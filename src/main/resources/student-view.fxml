@@ -4,97 +4,96 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.student.StudentController"
-            styleClass="root-pane">
+  fx:controller="com.student.StudentController"
+  styleClass="root-pane">
 
-    <top>
-        <VBox spacing="5" styleClass="header">
-            <Label text="Student Management System"
-                   styleClass="heading"/>
-            <Label text="JavaFX + MongoDB | Student Records"
-                   styleClass="subtitle"/>
-        </VBox>
-    </top>
+  <top>
+    <VBox spacing="5" styleClass="header">
+      <Label text="Student Management System"
+        styleClass="heading" />
+      <Label text="JavaFX + MongoDB | Student Records"
+        styleClass="subtitle" />
+    </VBox>
+  </top>
 
-    <center>
-        <VBox spacing="16" styleClass="content">
+  <center>
+    <VBox spacing="16" styleClass="content">
 
-            <Label text="Student Records"
-                   styleClass="section-title"/>
+      <Label text="Student Records"
+        styleClass="section-title" />
 
-            <TableView fx:id="studentTable"
-                       VBox.vgrow="ALWAYS"
-                       columnResizePolicy="CONSTRAINED_RESIZE_POLICY">
+      <TableView fx:id="studentTable"
+        VBox.vgrow="ALWAYS">
 
-                <columns>
-                    <TableColumn fx:id="idColumn"
-                                 text="Student ID"/>
-                    <TableColumn fx:id="nameColumn"
-                                 text="Full Name"/>
-                    <TableColumn fx:id="departmentColumn"
-                                 text="Department"/>
-                    <TableColumn fx:id="averageColumn"
-                                 text="Average"/>
-                </columns>
+        <columns>
+          <TableColumn fx:id="idColumn"
+            text="Student ID" />
+          <TableColumn fx:id="nameColumn"
+            text="Full Name" />
+          <TableColumn fx:id="departmentColumn"
+            text="Department" />
+          <TableColumn fx:id="averageColumn"
+            text="Average" />
+        </columns>
 
-            </TableView>
+      </TableView>
 
-            <Label text="Manage Student"
-                   styleClass="section-title"/>
+      <Label text="Manage Student"
+        styleClass="section-title" />
 
-            <GridPane hgap="12" vgap="12">
+      <GridPane hgap="12" vgap="12">
 
-                <columnConstraints>
-                    <ColumnConstraints percentWidth="50"/>
-                    <ColumnConstraints percentWidth="50"/>
-                </columnConstraints>
+        <columnConstraints>
+          <ColumnConstraints percentWidth="50" />
+          <ColumnConstraints percentWidth="50" />
+        </columnConstraints>
 
-                <TextField fx:id="studentIdField"
-                           promptText="Student ID"
-                           GridPane.columnIndex="0"
-                           GridPane.rowIndex="0"/>
+        <TextField fx:id="studentIdField"
+          promptText="Student ID"
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="0" />
 
-                <TextField fx:id="firstNameField"
-                           promptText="First Name"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="0"/>
+        <TextField fx:id="firstNameField"
+          promptText="First Name"
+          GridPane.columnIndex="1"
+          GridPane.rowIndex="0" />
 
-                <TextField fx:id="lastNameField"
-                           promptText="Last Name"
-                           GridPane.columnIndex="0"
-                           GridPane.rowIndex="1"/>
+        <TextField fx:id="lastNameField"
+          promptText="Last Name"
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="1" />
 
-                <TextField fx:id="departmentField"
-                           promptText="Department"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="1"/>
+        <TextField fx:id="departmentField"
+          promptText="Department"
+          GridPane.columnIndex="1"
+          GridPane.rowIndex="1" />
 
-            </GridPane>
+      </GridPane>
 
-            <HBox spacing="12">
+      <HBox spacing="12">
 
-                <Button text="Create"
-                        onAction="#createStudent"
-                        styleClass="create-button"/>
+        <Button text="Create"
+          onAction="#createStudent"
+          styleClass="create-button" />
 
-                <Button text="Read / Refresh"
-                        onAction="#loadStudents"/>
+        <Button text="Read / Refresh"
+          onAction="#loadStudents" />
 
-                <Button text="Update"
-                        onAction="#updateStudent"
-                        styleClass="update-button"/>
+        <Button text="Update"
+          onAction="#updateStudent"
+          styleClass="update-button" />
 
-                <Button text="Delete"
-                        onAction="#deleteStudent"
-                        styleClass="delete-button"/>
+        <Button text="Delete"
+          onAction="#deleteStudent"
+          styleClass="delete-button" />
 
-            </HBox>
+      </HBox>
 
-            <Label fx:id="statusLabel"
-                   text="Ready"
-                   styleClass="status-label"/>
+      <Label fx:id="statusLabel"
+        text="Ready"
+        styleClass="status-label" />
 
-        </VBox>
-    </center>
+    </VBox>
+  </center>
 
 </BorderPane>

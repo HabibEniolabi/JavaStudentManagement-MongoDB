@@ -101,7 +101,8 @@ public class StudentController {
                   student.getString("department"));
             }
           });
-
+      studentTable.setColumnResizePolicy(
+          TableView.CONSTRAINED_RESIZE_POLICY);
       loadStudents();
 
     } catch (Exception ex) {
