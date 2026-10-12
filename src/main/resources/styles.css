@@ -1,0 +1,87 @@
+.root-pane {
+  -fx-background-color: #f3f6fa;
+  -fx-font-family: "Arial";
+}
+
+.header {
+  -fx-background-color: #ffffff;
+  -fx-padding: 22 30;
+  -fx-border-color: #e5eaf0;
+  -fx-border-width: 0 0 1 0;
+}
+
+.heading {
+  -fx-font-size: 23px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #172b4d;
+}
+
+.subtitle {
+  -fx-text-fill: #76859a;
+  -fx-font-size: 12px;
+}
+
+.content {
+  -fx-padding: 26 30;
+}
+
+.section-title {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #253957;
+}
+
+.table-view {
+  -fx-background-color: white;
+  -fx-border-color: #e2e8f0;
+  -fx-border-radius: 8;
+}
+
+.table-view .column-header-background {
+  -fx-background-color: #eaf0f8;
+}
+
+.table-row-cell {
+  -fx-cell-size: 40px;
+}
+
+.text-field {
+  -fx-background-color: white;
+  -fx-border-color: #dce3ec;
+  -fx-border-radius: 6;
+  -fx-background-radius: 6;
+  -fx-padding: 10;
+}
+
+.text-field:focused {
+  -fx-border-color: #2563eb;
+}
+
+.button {
+  -fx-background-color: #475569;
+  -fx-text-fill: white;
+  -fx-background-radius: 6;
+  -fx-padding: 11 20;
+  -fx-cursor: hand;
+}
+
+.create-button {
+  -fx-background-color: #184b9b;
+}
+
+.update-button {
+  -fx-background-color: #0f766e;
+}
+
+.delete-button {
+  -fx-background-color: #b91c1c;
+}
+
+.button:hover {
+  -fx-opacity: 0.88;
+}
+
+.status-label {
+  -fx-text-fill: #475569;
+  -fx-font-size: 12px;
+}

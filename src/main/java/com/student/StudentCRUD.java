@@ -10,8 +10,16 @@ import org.bson.Document;
 
 import static com.mongodb.client.model.Indexes.ascending;
 
+//Read
 import com.mongodb.client.FindIterable;
 import static com.mongodb.client.model.Filters.eq;
+
+//Update
+import com.mongodb.client.result.UpdateResult;
+import static com.mongodb.client.model.Updates.set;
+
+//Delete
+import com.mongodb.client.result.DeleteResult;
 
 public class StudentCRUD {
 
@@ -34,10 +42,12 @@ public class StudentCRUD {
           new IndexOptions().unique(true));
 
       getAllStudents(students);
-
       getStudentById(students, "STU001");
-
       getStudentsByDepartment(students, "Computer Science");
+      updateStudent(students, "STU002", "Economics");
+      getStudentById(students, "STU002");
+      deleteStudent(students, "STU003");
+      getAllStudents(students);
 
     } catch (Exception exception) {
       System.err.println(
@@ -75,6 +85,51 @@ public class StudentCRUD {
 
     System.out.println("Student created successfully!");
     System.out.println(student.toJson());
+  }
+
+  public static void createMoreStudents(
+      MongoCollection<Document> students) {
+
+    Document student2 = new Document()
+        .append("student_id", "STU002")
+        .append("first_name", "Mary")
+        .append("last_name", "Okafor")
+        .append("age", 22)
+        .append("gender", "Female")
+        .append("department", "Accounting")
+        .append("level", 200)
+        .append("state_of_origin", "Anambra")
+        .append("scores", new Document()
+            .append("mathematics", 70)
+            .append("english", 80)
+            .append("programming", 65)
+            .append("database_systems", 75)
+            .append("statistics", 60))
+        .append("total_score", 350)
+        .append("average_score", 70.0);
+
+    Document student3 = new Document()
+        .append("student_id", "STU003")
+        .append("first_name", "Ibrahim")
+        .append("last_name", "Musa")
+        .append("age", 20)
+        .append("gender", "Male")
+        .append("department", "Computer Science")
+        .append("level", 300)
+        .append("state_of_origin", "Kano")
+        .append("scores", new Document()
+            .append("mathematics", 85)
+            .append("english", 75)
+            .append("programming", 95)
+            .append("database_systems", 90)
+            .append("statistics", 80))
+        .append("total_score", 425)
+        .append("average_score", 85.0);
+
+    students.insertMany(
+        java.util.Arrays.asList(student2, student3));
+
+    System.out.println("Two additional students inserted!");
   }
 
   public static void getAllStudents(
@@ -116,6 +171,38 @@ public class StudentCRUD {
 
     for (Document student : studentRecords) {
       System.out.println(student.toJson());
+    }
+  }
+
+  public static void updateStudent(
+      MongoCollection<Document> students,
+      String studentId,
+      String newDepartment) {
+
+    UpdateResult result = students.updateOne(
+        eq("student_id", studentId),
+        set("department", newDepartment));
+
+    if (result.getMatchedCount() == 0) {
+      System.out.println("Student not found.");
+    } else if (result.getModifiedCount() == 0) {
+      System.out.println("Student already has this department.");
+    } else {
+      System.out.println("Student updated successfully!");
+    }
+  }
+
+  public static void deleteStudent(
+      MongoCollection<Document> students,
+      String studentId) {
+
+    DeleteResult result = students.deleteOne(
+        eq("student_id", studentId));
+
+    if (result.getDeletedCount() > 0) {
+      System.out.println("Student deleted successfully!");
+    } else {
+      System.out.println("Student not found.");
     }
   }
 }
