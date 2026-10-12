@@ -10,6 +10,9 @@ import org.bson.Document;
 
 import static com.mongodb.client.model.Indexes.ascending;
 
+import com.mongodb.client.FindIterable;
+import static com.mongodb.client.model.Filters.eq;
+
 public class StudentCRUD {
 
   private static final String CONNECTION_STRING = "mongodb://127.0.0.1:27017";
@@ -30,7 +33,11 @@ public class StudentCRUD {
           ascending("student_id"),
           new IndexOptions().unique(true));
 
-      createStudent(students);
+      getAllStudents(students);
+
+      getStudentById(students, "STU001");
+
+      getStudentsByDepartment(students, "Computer Science");
 
     } catch (Exception exception) {
       System.err.println(
@@ -68,5 +75,47 @@ public class StudentCRUD {
 
     System.out.println("Student created successfully!");
     System.out.println(student.toJson());
+  }
+
+  public static void getAllStudents(
+      MongoCollection<Document> students) {
+
+    System.out.println("All Student Records:");
+
+    FindIterable<Document> studentRecords = students.find();
+
+    for (Document student : studentRecords) {
+      System.out.println(student.toJson());
+    }
+  }
+
+  public static void getStudentById(
+      MongoCollection<Document> students,
+      String studentId) {
+
+    Document student = students
+        .find(eq("student_id", studentId))
+        .first();
+
+    if (student != null) {
+      System.out.println("Student Found:");
+      System.out.println(student.toJson());
+    } else {
+      System.out.println("Student not found: " + studentId);
+    }
+  }
+
+  public static void getStudentsByDepartment(
+      MongoCollection<Document> students,
+      String department) {
+
+    System.out.println("Department: " + department);
+
+    FindIterable<Document> studentRecords = students.find(
+        eq("department", department));
+
+    for (Document student : studentRecords) {
+      System.out.println(student.toJson());
+    }
   }
 }
