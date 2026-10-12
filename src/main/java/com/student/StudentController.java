@@ -81,7 +81,7 @@ public class StudentController {
       database.runCommand(new Document("ping", 1));
 
       // Separate collection for CRUD demonstrations.
-      students = database.getCollection("students_demo");
+      students = database.getCollection("students");
 
       students.createIndex(
           ascending("student_id"),
